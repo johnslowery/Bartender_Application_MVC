@@ -1,0 +1,12 @@
+﻿@model IEnumerable<Cocktail>
+
+@{
+    ViewData["Title"] = "Place an Order";
+}
+
+<h1>Place an Order</h1>
+
+@foreach (var p in Model)
+{
+    @Html.Partial("CocktailIndividual", p)
+}

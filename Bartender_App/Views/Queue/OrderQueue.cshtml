@@ -1,0 +1,36 @@
+﻿@model Bartender_App.ViewModels.OrderQueueVM;
+
+@{
+    ViewData["Title"] = "Order Queue";
+}
+
+<h1>Order Queue</h1>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Item</th>
+            <th class="text-right">Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var line in Model.Queue.Lines)
+        {
+            <tr>
+                <td class="text-left">@line.Cocktail.Name</td>
+                <td class="text-right">@line.Cocktail.Price.ToString("c")</td>
+                <td>
+                    <form asp-action="RemoveFromQueue" method="post">
+                        <input type="hidden" name="CocktailID"
+                               value="@line.Cocktail.CocktailID" />
+                        <input type="hidden" name="returnUrl"
+                               value="@Model.ReturnUrl" />
+                        <button type="submit" class="btn btn-sm btn-danger ">
+                            Ready for Pick Up
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

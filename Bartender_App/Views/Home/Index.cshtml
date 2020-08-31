@@ -1,0 +1,22 @@
+﻿@model Bartender_App.Models.UserTypeModel
+
+@{
+    ViewData["Title"] = "Welcome!";
+}
+
+Are you a customer or staff member?
+<div asp-validation-summary="All">
+    <form method="post" asp-action="UserType" asp-controller="Home">
+        @foreach (var type in Model.UserTypes)
+        {
+            <input type="radio" asp-for="UserType" value="@type" id="UserType@(type) " />@type<br />
+        }
+        <span asp-validation-for="UserType" class="text-danger"></span><br />
+        <input type="submit" />
+    </form>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,15 @@
+﻿@model Bartender_App.Models.UserTypeModel
+
+@if (Model.UserType == "Customer")
+{
+    <a class="btn btn-primary" asp-action="PlaceOrder" asp-controller="Queue">Place an Order</a>
+}
+@if (Model.UserType == "Staff")
+{
+    <a class="btn btn-primary" asp-action="OrderQueue" asp-controller="Queue">Order Queue</a>
+}
+@if (Model.UserType == null)
+{
+    <p>You shouldn't be able to see this</p>
+}
+
